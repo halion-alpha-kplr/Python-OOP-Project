@@ -1,6 +1,7 @@
 # nous allons a présent utiliser la classe Tree de la librairie treelib pour construire un arbdre de donnée
 
 from treelib import Tree
+import os
 
 def create_tree_from_dict(tree, parent_node_id, parent_dict):
     for key, value in parent_dict.items():
@@ -52,3 +53,4 @@ et la fonction est appelée récursivement pour créer un sous-arbre pour la val
 
 - Une fois que l'arbre est construit, sa méthode show() est appelée pour afficher la structure de l'arbre dans la console. 
 """
+#test de sauvegarde
