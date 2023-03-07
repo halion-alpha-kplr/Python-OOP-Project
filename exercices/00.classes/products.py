@@ -5,34 +5,24 @@ class Product:
         self.marque = marque
 
 class Meubles(Product):
-    def __init__(self, cost, price, marque, materiaux, couleur, dimensions):
+    def __init__(self, materiaux, couleur, dimensions,nom):
         super().__init__(cost, price, marque)
         self.materiaux = materiaux
         self.couleur = couleur
         self.dimensions = dimensions
+        self.nom = nom
     
-class Canape(Product):
-    def __init__(self, cost, price, marque, materiaux, couleur, dimensions,nom):
-        super().__init__(cost, price, marque)
-        self.materiaux = materiaux
-        self.couleur = couleur
-        self.dimensions = dimensions
-        self.nom = nom
+class Canape(Meubles):
+    def __init__(self):
+        super().__init__(cost, price, marque, materiaux, couleur, dimensions)
 
-class Chaise(Product):
-    def __init__(self,cost, price, marque, materiaux, couleur, dimensions, nom):
-        super().__init__(cost, price, marque)
-        self.materiaux = materiaux
-        self.couleur = couleur
-        self.dimensions = dimensions
-        self.nom = nom
+class Chaise(Meubles):
+    def __init__(self):
+        super().__init__(cost, price, marque, materiaux, couleur, dimensions)
 
-class Table(Product):
-    def __init__(self, cost, price, marque, materiaux, couleur, dimensions):
-        super().__init__(cost,price,marque)
-        self.materiaux = materiaux
-        self.couleur = couleur
-        self.dimensions = dimensions
+class Table(Meubles):
+    def __init__(self):
+        super().__init__(cost, price, marque, materiaux, couleur, dimensions)
 
 canape1 = Canape(1000,2000,"SIESTA","Cuir","Blanc","200*100*80","Canape")
 canape2 = Canape(800,1600,"SIESTA","Tissu","Bleu","150*90*70","Canape")
