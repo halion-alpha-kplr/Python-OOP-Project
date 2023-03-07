@@ -74,6 +74,8 @@ def create_tree_from_dict(tree, parent_node_id, parent_dict):
         else:
             # Créer un nouveau noeud pour la feuille courante du dictionnaire
             leaf_node_id = f"{parent_node_id}.{key}"
+            #leaf_node_id = parent_node_id +'.' + key
+            #id_feuille = id_noeud_parent + '.' + clé
             tree.create_node(tag=f"{key}: {value}", identifier=leaf_node_id, parent=parent_node_id)
 
 def main():
