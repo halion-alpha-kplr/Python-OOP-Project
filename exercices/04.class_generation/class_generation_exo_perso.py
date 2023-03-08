@@ -50,5 +50,9 @@ def generate_class_def(class_name: str, attrs:dict, superclass_name:str,supercla
 
     return class_template + constructor_template + "\n\n"
 
-test_solution = generate_class_def("test",json_dict_from_file(),"test",)
-print(test_solution)
+if __name__ == '__main__':
+    # Appeler la fonction principale
+    test_fonction()
+
+    test_solution = generate_class_def("test",json_dict_from_file(),"test",)
+    print(test_solution)

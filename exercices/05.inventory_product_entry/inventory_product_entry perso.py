@@ -5,48 +5,21 @@ class InventoryProductEntry:
     def __init__(self, inventory_product : Product, inventory_quantity):
         self.inventory_product = inventory_product
         self.inventory_quantity = inventory_quantity
+        self.sales = 0
+        self.expenses = 0
 
-    sales = 0
-    exepenses = 0
-
-
-    #Méthode Sell
-    """
-    La méthode sell est utilisée pour retirer la quantité vendue du produit depuis le stock.
-    Elle met également à jour les ventes totales pour le produit.
-    
-    """
-    def sell(self, quantity):
-        #Avant de mettre à jour l'état du stocke du produit, on doit vérifier si on a déjà une quantité suffisante à vendre.
-        """
-        En utilisant des conditions, vérifier: 
-
-        SI la quantité en stock est inférieure à la quantité demandée:
-            Afficher "Le stock du produit [nom du produit] est insuffisant."
-            Retourner Faux
-        SINON:
-            Réduire la quantité en stock par la quantité demandée
-            Ajouter le revenue total de la vente à la variable 'sales' en multipliant la quantité vendue par le prix du produit
-            Retourner Vrai
+    def sell(self, sales_quantity):
+        if self.inventory_quantity < sales_quantity :
+            return False
+        else :
+            self.inventory_quantity = self.inventory_quantity-sales_quantity
+            self.sales = self.inventory_product.price*sales_quantity
+            return True
         
-        """
-    
-    #Méthode Restock
-    """
-    La méthode restock est utilisée pour augmenter la quantité en stock lorsqu'un nouveau stock de produit est reçu. 
-    Elle met également à jour les dépenses totales pour restocker ce produit.
-    """
-    def restock(self, quantity):
-        """
-        Ajouter la quantité reçue à la quantité en stock
-        Ajouter le coût total de la nouvelle quantité reçue  à la variable 'expenses' en multipliant la quantité reçue par le coût du produit
-        """
+    def restock(self, reception_quantity):
+        self.inventory_quantity = self.inventory_quantity+reception_quantity 
+        self.sales = reception_quantity*self.inventory_product.price
 
-    #Méthode repr
-    """
-    La méthode repr est utilisée pour fournir une représentation en chaîne de caractères de l'objet InventoryProductEntry, 
-    qui contient des informations utiles telles que le nom du produit, la marque, la quantité en stock et le prix du produit.
-
-    """
     def __repr__(self):
+        print(self.inventory_product.price,self.inventory_product.marque,self.inventory_quantity,self.inventory_product.price)
         # Retourner une chaîne de caractères formatée contenant le nom du produit, la marque, la quantité en stock et le prix du produit.
