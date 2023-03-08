@@ -10,7 +10,6 @@ def json_dict_from_file():
     json_str = json.dumps(json_data)
     json_data = unidecode(json_str)
     json_dict = json.loads(json_data)
-    print(json_dict)
     return json_dict
 
 def create_tree_from_dict(tree, parent_node_id, parent_dict):
@@ -19,6 +18,10 @@ def create_tree_from_dict(tree, parent_node_id, parent_dict):
             new_node_id = f"{parent_node_id}.{key}"
             tree.create_node(tag=key, identifier=new_node_id, parent=parent_node_id)
             create_tree_from_dict(tree, new_node_id, value)
-        else:
-            leaf_node_id = f"{parent_node_id}.{key}"
-            tree.create_node(tag=f"{key}: {value}", identifier=leaf_node_id, parent=parent_node_id)
+
+my_tree = Tree()
+
+json_dict = json_dict_from_file()
+create_tree_from_dict(my_tree, "racine", json_dict)
+
+my_tree.show()
