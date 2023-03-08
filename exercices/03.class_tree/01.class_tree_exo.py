@@ -12,16 +12,34 @@ def json_dict_from_file():
     json_dict = json.loads(json_data)
     return json_dict
 
-def create_tree_from_dict(tree, parent_node_id, parent_dict):
-    for key, value in parent_dict.items():
-        if isinstance(value, dict):
-            new_node_id = f"{parent_node_id}.{key}"
-            tree.create_node(tag=key, identifier=new_node_id, parent=parent_node_id)
-            create_tree_from_dict(tree, new_node_id, value)
+def create_tree_from_dict(json_dict):
+    global tree 
+    tree = Tree()
 
-my_tree = Tree()
+    root_node_id = "root"
+    root_node_name = "Product Classes Hierarchy"
+    tree.create_node(root_node_name, root_node_id)
 
-json_dict = json_dict_from_file()
-create_tree_from_dict(my_tree, "racine", json_dict)
+    recusive_tree_from_json(json_dict, root_node_id)
 
-my_tree.show()
+    return tree
+
+def recusive_tree_from_json(json_dict, parent_node_id):
+    for class_name, class_attrs in json_dict.items():            
+            class_node_id = class_name
+            class_node_name = class_name
+
+            tree.create_node(class_node_name, class_node_id, parent=parent_node_id)
+
+            if "subclasses" in class_attrs:
+                recusive_tree_from_json(class_attrs["subclasses"], class_node_id)
+
+def main():
+    
+    json_dict = json_dict_from_file()
+    my_tree = create_tree_from_dict(json_dict)
+
+    my_tree.show()
+
+if __name__ == '__main__':
+    main()
