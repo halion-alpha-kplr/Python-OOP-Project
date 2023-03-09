@@ -1,4 +1,5 @@
 #La classe "InventoryManager" est une classe qui permet de gérer un inventaire de produits. 
+from inventory_product_entry_perso import *
 
 class InventoryManager:
     # Initialisation de la classe
@@ -48,10 +49,9 @@ class InventoryManager:
     def sell_product(self, product_name, quantity):
         for key in self.inventory :
             if product_exists(self,product_name) == True :
-                
-        #Pour chaque itération, on vérifie si le nom du produit fourni est équal à la clé du dictionnaire.
-        #Si le produit est trouvé, appeler la méthode 'sell' de l'objet InventoryProductEntry correspondant avec la quantité à vendre
-        #Sinon, afficher un message d'erreur indiquant que la vente a échoué
+               inventory_product_entry_perso.sell(quantity) 
+            print("Le produit n'a pas été trouvé, la vente a échoué !")
+
     
     #Méthode restock_product
     """
@@ -59,6 +59,13 @@ class InventoryManager:
     Elle prend en argument le nom du produit et la quantité à restocker.
     """
     def restock_product(self, product_name, quantity):
+        if product_name in self.inventory == True:
+            inventory_product_entry_perso.restock(self, quantity)
+            print("Le restock a fonctionné")
+        add_product(self, product_name, quantity=0)
+        inventory_product_entry_perso.restock(self, reception_quantity =0):
+
+
         #Vérifier si le produit existe déjà dans l'inventaire
         #Si le produit est trouvé, appeler la méthode 'restock' de l'objet InventoryProductEntry correspondant avec la quantité à restocker
         #Si le réapprovisionnement est réussi, afficher un message de confirmation
@@ -71,6 +78,11 @@ class InventoryManager:
     Elle prend en entrée un nom de produit.
     """
     def get_product(self, name):
+        for inventory_product_entry_key in self.inventory :
+            if inventory_product_entry_key == name
+                return self.inventaire[inventory_product_entry_key].product
+        
+        print("Le produit n'existe pas !")
         """
         pour chaque inventory_product_entry_key dans self.inventory:
             si inventory_product_entry_key == nom de produit:
@@ -84,6 +96,9 @@ class InventoryManager:
     et affiche les informations relatives à chacun d'entre eux (nom, quantité disponible, prix unitaire, coût unitaire, prix de vente unitaire, bénéfice unitaire). 
     """
     def list_products(self):
+        for key in self.inventory :
+            print(self.inventory.value)
+        return self.inventory
         """
         pour chaque clé du dictionnaire 'inventory':
             afficher la valeur correspondante à cette clé
