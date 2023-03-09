@@ -13,8 +13,7 @@ class InventoryManager:
     Si c'est le cas, la fonction retourne True, sinon elle retourne False.
     """
     def product_exists(self,product:Product):
-        for key in self.inventory.items():
-        #if inventory_product_entry_key == product.name:
+        if product in self.inventory:
             return True
         return False
 
@@ -25,22 +24,20 @@ class InventoryManager:
     """
     def add_product(self, product:Product, quantity):
         
-        If product in self.inventory : 
+        If product in self.inventory :
             print("Ce produit existe déja dans la base.")
-        Sinon:
-            Créer un nouvel objet InventoryProductEntry en utilisant le produit et la quantité fournis
             self.inventory += {product:quantity}
-        """
-    
+ 
     #Méthode remove_product
     """
     La méthode remove_product est utilisée pour supprimer un produit de l'inventaire.
     Elle prend en argument un nom de produit et supprime l'entrée correspondante dans le dictionnaire 'inventory'.
     """
     def remove_product(self, product_name):
-        #Utiliser la méthode product_exists pour vérifier si le produit existe dans l'inventaire
-        #Si le produit est trouvé, supprimer le de l'inventaire
-        #Sinon, afficher un message d'erreur indiquant que le produit n'a pas été trouvé
+        if product_exists(self,product_name) == True :
+            self.inventory.remove(product_name)
+        print("Le produit n'a pas été trouvé dans l'inventaire !")
+
     
     #Méthode sell_product
     """
@@ -49,7 +46,9 @@ class InventoryManager:
     """
     
     def sell_product(self, product_name, quantity):
-        #Utiliser une boucle pour parcourir les clés du dictionnaire 'inventory'
+        for key in self.inventory :
+            if product_exists(self,product_name) == True :
+                
         #Pour chaque itération, on vérifie si le nom du produit fourni est équal à la clé du dictionnaire.
         #Si le produit est trouvé, appeler la méthode 'sell' de l'objet InventoryProductEntry correspondant avec la quantité à vendre
         #Sinon, afficher un message d'erreur indiquant que la vente a échoué

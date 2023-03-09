@@ -30,7 +30,7 @@ def generate_class_def(class_name: str, attrs:dict, superclass_name:str,supercla
             constructor_def += f"\n\t\tself.{attr_name} = {attr_name}"
 
     if class_name == "Product":
-            constructor_def += "\n\t\tself.name=type(self).__name__"
+        constructor_def += "\n\t\tself.name=type(self).__name__"
 
     if has_attributes:
         constructor_template = f"\tdef __init__(self, {', '.join(constructor_args+superclass_args)}):"
@@ -51,8 +51,7 @@ def generate_class_def(class_name: str, attrs:dict, superclass_name:str,supercla
     return class_template + constructor_template + "\n\n"
 
 if __name__ == '__main__':
-    # Appeler la fonction principale
-    test_fonction()
 
     test_solution = generate_class_def("test",json_dict_from_file(),"test",)
     print(test_solution)
+    print(json_dict_from_file())

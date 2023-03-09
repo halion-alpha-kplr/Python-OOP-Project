@@ -1,4 +1,6 @@
 import class_generation_exo_perso
+from class_generation_exo_perso import *
+import os
 
 def generate_class_hierarchy(json_dict :dict, superclass_name:str=None,superclass_args:list=[]):
     class_defs = ""
@@ -20,3 +22,6 @@ def generate_class_hierarchy(json_dict :dict, superclass_name:str=None,superclas
 def write_content(content,filename):
         with open(filename, "w", encoding='utf-8') as f:
             f.write(content)
+
+local_path = os.path.dirname(os.path.abspath(__file__))
+write_content(generate_class_hierarchy(json_dict_from_file()),os.path.join(local_path,'product_classes.py'))
